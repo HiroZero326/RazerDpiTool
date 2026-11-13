@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <!--
+      可空引用类型采用「逐文件治理」而不是全局 enable：
+      全局 enable 会在 MainForm / DarkControls 里冒出 170 条警告，其中 114 条是
+      CS8618（字段在 BuildUi() 里赋值，编译器看不到），必须靠 `= null!` 压掉——
+      那等于把「可能为 null」这件事藏起来，反而降低这一项的价值。
+      这里先全局开注解（annotations 不产生警告），再由各文件顶部 #nullable enable 决定
+      是否参与分析。Program.cs / RazerProtocol.cs 已全量启用，其余文件后续分批跟进。
+    -->
+    <Nullable>annotations</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>RazerDpiTool</RootNamespace>
+    <AssemblyName>RazerDpiTool</AssemblyName>
+    <LangVersion>latest</LangVersion>
+    <ApplicationIcon>app.ico</ApplicationIcon>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+    <!-- 三栏全像素硬编码布局：SystemAware 保证高分屏下清晰，又不会跨屏重缩放挤错位 -->
+    <ApplicationHighDpiMode>SystemAware</ApplicationHighDpiMode>
+  </PropertyGroup>
+
+  <!-- 程序集元数据：不写的话 exe 属性里版本恒为 1.0.0.0，与界面上写的 v1.1 对不上 -->
+  <PropertyGroup>
+    <Version>1.1.0</Version>
+    <AssemblyTitle>雷蛇鼠标 DPI 调节工具</AssemblyTitle>
+    <Company>HiroZero</Company>
+    <Product>RazerDpiTool</Product>
+    <Description>非官方社区实现，支持读取与写入雷蛇鼠标 DPI（写入后自动读回核对）</Description>
+    <Copyright>Copyright © 2026 HiroZero</Copyright>
+    <RepositoryUrl>https://github.com/HiroZero/RazerDpiTool</RepositoryUrl>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- HidSharp：一个让 C# 程序能和 USB 鼠标「说话」的现成工具包，IDE 会自动联网下载 -->
+    <PackageReference Include="HidSharp" Version="2.6.4" />
+  </ItemGroup>
+
+</Project>

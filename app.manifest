@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<assembly manifestVersion="1.0" xmlns="urn:schemas-microsoft-com:asm.v1">
+  <assemblyIdentity version="1.1.0.0" name="RazerDpiTool.app" />
+
+  <!-- asInvoker：普通权限运行。读写 HID 设备不需要管理员，弹 UAC 只会把人吓跑。 -->
+  <trustInfo xmlns="urn:schemas-microsoft-com:asm.v2">
+    <security>
+      <requestedPrivileges xmlns="urn:schemas-microsoft-com:asm.v3">
+        <requestedExecutionLevel level="asInvoker" uiAccess="false" />
+      </requestedPrivileges>
+    </security>
+  </trustInfo>
+
+  <compatibility xmlns="urn:schemas-microsoft-com:compatibility.v1">
+    <application>
+      <!-- Windows 10 / 11 -->
+      <supportedOS Id="{8e0f7a12-bfb3-4fe8-b9a5-48fd50a15a9a}" />
+    </application>
+  </compatibility>
+
+  <!--
+    DPI 感知不在这里声明：.NET 8 的 WinForms 要求走 ApplicationHighDpiMode 项目属性
+    （写在 manifest 里会触发 WFAC010 警告）。当前用 SystemAware——本界面是三栏
+    全像素硬编码布局，PerMonitorV2 在跨屏切换时会重缩放把布局挤错位。
+  -->
+</assembly>

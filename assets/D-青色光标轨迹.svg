@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <title>鼠标 DPI 工具图标 · 光标轨迹 · #00EEEE</title>
+  <desc>100% 原创自绘图案（光标箭头 + 三道速度线），不含任何商标元素。
+  主色 #00EEEE：改下方 g 的 stroke 即可换色；光晕层可整行删除。</desc>
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+    <g id="art" transform="translate(-72,-13) scale(1.12)" fill="none" stroke="#00EEEE" stroke-width="14"
+       stroke-linecap="round" stroke-linejoin="round">
+    <!-- 几何化光标箭头 -->
+    <path d="M 140 80 L 140 340 L 196 288 L 240 380 L 282 360 L 238 268 L 310 268 Z"/>
+    <!-- 由短到长的三道速度轨迹 -->
+    <path d="M 320 300 H 366"/>
+    <path d="M 320 350 H 406"/>
+    <path d="M 320 400 H 446"/>
+    </g>
+  </defs>
+  <use href="#art" filter="url(#glow)" opacity="0.5"/>
+  <use href="#art"/>
+</svg>
